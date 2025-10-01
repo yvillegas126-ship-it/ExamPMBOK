@@ -1507,18 +1507,19 @@
 
         // Cargar datos guardados al inicio
 		function init() {
+			 // Primero cargar resultados
+			const savedResults = localStorage.getItem('examResults');
+			if (savedResults) {
+				examResults = JSON.parse(savedResults);
+			}
+			// Luego cargar exámenes
 			const savedExams = localStorage.getItem('examData');
 			if (savedExams) {
 				exams = JSON.parse(savedExams);
 				displayExamList();
 			}
-			
-			const savedResults = localStorage.getItem('examResults');
-			if (savedResults) {
-				examResults = JSON.parse(savedResults);
-				displayResults();
-			}
-			
+			 // SIEMPRE mostrar la lista (con o sin exámenes)
+			displayExamList();
 			// Cargar tema guardado
 			loadSavedTheme();
 		}
