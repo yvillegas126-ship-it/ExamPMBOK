@@ -2777,8 +2777,8 @@
 		}
 
 		function loadSavedTheme() {
-			const savedTheme = localStorage.getItem('selectedTheme') || 'blue';
-			if (savedTheme !== 'blue') {
+			const savedTheme = localStorage.getItem('selectedTheme') || 'dark';
+			if (savedTheme !== 'dark') {
 				document.body.setAttribute('data-theme', savedTheme);
 			}
 			
