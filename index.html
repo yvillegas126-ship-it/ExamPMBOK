@@ -984,15 +984,15 @@
             }
         }
         
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        
-        .btn:disabled:hover {
-            background: #27ae60;
-            transform: none;
-        }
+		.btn:disabled {
+			opacity: 0.5;
+			cursor: not-allowed;
+			pointer-events: none;
+		}
+
+		.btn:disabled:hover {
+			transform: none;
+		}
         
 		/* Estilos para modo de selección en resultados */
 		.result-checkbox {
@@ -1779,13 +1779,29 @@
         }
         
         // Mostrar lista de exámenes agrupados por área
-		 function displayExamList() {
+		function displayExamList() {
 			const examAreas = document.getElementById('examAreas');
+			const deleteQuestionsBtn = document.querySelector('.btn-danger[onclick="clearAllQuestions()"]');
+			
 			examAreas.innerHTML = '';
 			
 			if (exams.length === 0) {
 				examAreas.innerHTML = '<p style="text-align: center; color: #666; padding: 40px; font-style: italic;">No hay exámenes cargados. Usa la pestaña "Cargar Preguntas" para añadir exámenes.</p>';
+				
+				// Deshabilitar botón de borrar cuando no hay preguntas
+				if (deleteQuestionsBtn) {
+					deleteQuestionsBtn.disabled = true;
+					deleteQuestionsBtn.style.opacity = '0.5';
+					deleteQuestionsBtn.style.cursor = 'not-allowed';
+				}
 				return;
+			}
+			
+			// Habilitar botón cuando hay preguntas
+			if (deleteQuestionsBtn) {
+				deleteQuestionsBtn.disabled = false;
+				deleteQuestionsBtn.style.opacity = '1';
+				deleteQuestionsBtn.style.cursor = 'pointer';
 			}
 			
 			// Agrupar exámenes por área
@@ -2211,13 +2227,13 @@
 									</h3>
 								</div>
 								
-								<div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 0px;">
+								<div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 10px;">
 									<p style="margin: 0; font-size: 16px;"><strong>📖 Explicación:</strong></p>
 									<p style="margin: 10px 0 0 0; line-height: 1.6; color: #555;">${question.explanation}</p>
 								</div>
 								
 								${currentAnswers[question.id] !== question.correctAnswer ? `
-									<div style="background: #d4edda; padding: 15px; border-radius: 10px; border-left: 4px solid #27ae60;">
+									<div style="background: #d4edda;padding: 15px;border-radius: 10px;border-left: 4px solid #27ae60;margin-top: 10px;margin-block-end: 8px;">
 										<p style="margin: 0;"><strong>✅ La respuesta correcta era:</strong></p>
 										<p style="margin: 5px 0 0 0; color: #155724;">${String.fromCharCode(97 + question.correctAnswer)}) ${question.options[question.correctAnswer].replace(/^[a-d]\)\s*/i, '')}</p>
 									</div>
