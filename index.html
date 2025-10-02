@@ -66,6 +66,22 @@
 			gap: 5px;
 		}
 
+		.hamburger-menu {
+			cursor: pointer;
+			padding: 10px;
+			z-index: 1000;
+			width: 50px; /* Ancho fijo */
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+		.hamburger-bars {
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+		}
+
 		.hamburger-icon {
 			width: 30px;
 			height: 3px;
@@ -74,28 +90,8 @@
 			border-radius: 3px;
 		}
 
-		.hamburger-bars {
-			display: flex;
-			flex-direction: column;
-		}
-
-		.hamburger-menu.active {
+		.hamburger-menu.active .hamburger-icon {
 			display: none;
-		}
-		.hamburger-menu.active .hamburger-bars {
-			display: none;
-		}
-
-		.close-icon {
-			display: none;
-			font-size: 35px;
-			color: white;
-			font-weight: 300;
-			line-height: 1;
-		}
-
-		.hamburger-menu.active .close-icon {
-			display: block;
 		}
 
 		.side-menu {
@@ -792,6 +788,7 @@
 				grid-template-columns: repeat(3, 1fr);
 			}
 		}
+        
         .metric-card {
             background: white;
             border-radius: 10px;
@@ -1531,9 +1528,21 @@
 			const menuOverlay = document.getElementById('menuOverlay');
 			const hamburgerMenu = document.getElementById('hamburgerMenu');
 			
-			sideMenu.classList.toggle('active');
-			menuOverlay.classList.toggle('active');
-			hamburgerMenu.classList.toggle('active');
+			if (sideMenu.classList.contains('active')) {
+				// Cerrando el menú
+				sideMenu.classList.remove('active');
+				menuOverlay.classList.remove('active');
+				setTimeout(() => {
+					hamburgerMenu.classList.remove('active');
+				}, 300);
+			} else {
+				// Abriendo el menú
+				hamburgerMenu.classList.add('active');
+				setTimeout(() => {
+					sideMenu.classList.add('active');
+					menuOverlay.classList.add('active');
+				}, 10);
+			}
 		}
 
 		function navigateTo(tabName) {
