@@ -1982,7 +1982,7 @@
             const resultsContainer = document.getElementById('resultsContainer');
             
             if (selectMode) {
-                selectModeBtn.textContent = '❌ Cancelar';
+                selectModeBtn.textContent = '✖ Cancelar';
                 selectModeBtn.className = 'btn btn-danger';
                 deleteSelectedBtn.classList.remove('hidden');
                 
@@ -1998,7 +1998,7 @@
                 resultsContainer.classList.add('select-mode-active');
                 resultsContainer.classList.remove('select-mode-inactive');
             } else {
-                selectModeBtn.textContent = '☑️ Seleccionar';
+                selectModeBtn.textContent = '✅ Seleccionar';
                 selectModeBtn.className = 'btn btn-primary';
                 deleteSelectedBtn.classList.add('hidden');
                 
