@@ -28,17 +28,28 @@
         }
         
 		.header {
-			background: var(--header-bg);
-			color: white;
-			padding: 20px;
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
+		    background: var(--header-bg);
+		    color: white;
+		    padding: 20px;
+		    display: flex;
+		    justify-content: space-between;
+		    align-items: center;
+		    gap: 15px;
 		}
-
+		
+		.logo-container {
+		    flex-shrink: 0;
+		}
+		
+		.logo {
+		    height: 60px;
+		    width: auto;
+		    object-fit: contain;
+		}
+		
 		.header-content {
-			flex: 1;
-			text-align: center;
+		    flex: 1;
+		    text-align: center;
 		}
 
 		.header h1 {
@@ -731,6 +742,15 @@
 			.header p {
 				font-size: 10px;
 			}
+
+			.logo {
+		        height: 45px;
+		    }
+		    
+		    .header {
+		        padding: 15px;
+		        gap: 10px;
+		    }
 			
 			.side-menu {
 				width: 280px;
@@ -1381,8 +1401,10 @@
 			</div>
 		</div>
 		
-		<div class="container">
 			<div class="header">
+				<div class="logo-container">
+					<img src="https://raw.githubusercontent.com/yvillegas126-ship-it/ExamPMBOK/main/logo.png" alt="PMBOK Exams Logo" class="logo">
+				</div>
 				<div class="header-content">
 					<h1>Examenes PMBOK</h1>
 					<p>Actualizado a la 7ma Edición del PMBOK</p>
