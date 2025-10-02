@@ -1867,13 +1867,39 @@
         }
         
         // Mostrar resultados agrupados por área
-        function displayResults() {
-		const container = document.getElementById('resultsContainer');
-		
-		if (examResults.length === 0) {
-			container.innerHTML = '<p style="text-align: center; color: #666; padding: 40px; font-style: italic;">No has realizado ningún examen aún.</p>';
-			return;
-		}
+		function displayResults() {
+	    const container = document.getElementById('resultsContainer');
+	    const selectModeBtn = document.getElementById('selectModeBtn');
+	    const deleteAllBtn = document.querySelector('.btn-danger[onclick="clearAllResults()"]');
+	    
+	    if (examResults.length === 0) {
+	        container.innerHTML = '<p style="text-align: center; color: #666; padding: 40px; font-style: italic;">No has realizado ningún examen aún.</p>';
+	        
+	        // Deshabilitar botones cuando no hay resultados
+	        if (selectModeBtn) {
+	            selectModeBtn.disabled = true;
+	            selectModeBtn.style.opacity = '0.5';
+	            selectModeBtn.style.cursor = 'not-allowed';
+	        }
+	        if (deleteAllBtn) {
+	            deleteAllBtn.disabled = true;
+	            deleteAllBtn.style.opacity = '0.5';
+	            deleteAllBtn.style.cursor = 'not-allowed';
+	        }
+	        return;
+	    }
+	    
+	    // Habilitar botones cuando hay resultados
+	    if (selectModeBtn) {
+	        selectModeBtn.disabled = false;
+	        selectModeBtn.style.opacity = '1';
+	        selectModeBtn.style.cursor = 'pointer';
+	    }
+	    if (deleteAllBtn) {
+	        deleteAllBtn.disabled = false;
+	        deleteAllBtn.style.opacity = '1';
+	        deleteAllBtn.style.cursor = 'pointer';
+	    }
 		
 		// Agrupar resultados por área
 		const areaResults = {};
